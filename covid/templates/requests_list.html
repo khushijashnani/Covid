@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron">
+    <h1>Requirement List</h1>
+</div>
+<div class='container'>
+    {% for r in requests %}
+    <div class="card">
+        <div class="card-body">
+           Name : {{r.name}}<br>
+           Area : {{r.location}},{{r.district}},{{r.state}}<br>
+           Requirements : {{r.req}}<br>
+           Contact : {{r.contact}}  
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

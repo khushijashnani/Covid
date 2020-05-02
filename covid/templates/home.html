@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="d-inline">
+        <a class="btn btn-primary" href="{{url_for('requirements.require')}}">POST A REQUEST</a>
+        <a class="btn btn-danger" href="{{url_for('requirements.reqlist')}}">PENDING REQUESTS</a>
+    </div>
+    <div class="d-inline">
+        <button class="btn btn-success" href="#">REGISTERED NGO'S</button>
+        <button class="btn btn-warning" href="#">REGISTER AS A NGO</button>
+    </div>
+</div>
+{% endblock %}
