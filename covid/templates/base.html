@@ -10,10 +10,15 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-    <ul class="navbar navbar-expand-lg bg-light">
-        <a class="navbar-brand" href="{{url_for('home')}}">Covid</a>
-        <li class="nav-item nav-link"><a href="{{url_for('home')}}">Home</a></li>
-    </ul>
+    <nav class="navbar navbar-expand-lg navbar-light shadow-lg bg-light navbar-fixed-top">
+        <ul class="navbar-nav">
+            <a class="navbar-brand" href="{{url_for('home')}}">Covid</a>
+            <li class="nav-item nav-link"><a href="{{url_for('home')}}">Home</a></li>
+            <li class="nav-item nav-link"><p>Already registered ?</p></li>
+        </ul>
+        <div class="navbar-right"><a href="#" class="btn btn-outline-warning">Login Here</a></div>
+    </nav>
+    <br>
     <div class="container">
         {% block content %}
         {% endblock %}

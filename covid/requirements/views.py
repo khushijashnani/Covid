@@ -1,10 +1,10 @@
-from flask import flash,render_template,redirect,url_for,request,Blueprint,abort
+from flask import flash,render_template,redirect,url_for,request,Blueprint,abort,jsonify
 from covid import db,mail,app
 from covid.models import requirement
 from covid.requirements.forms import Requirement
 from covid.requirements.picture_handler import add_image
 from datetime import datetime
-import string,random
+import string, random
 from flask_mail import Message
 from covid.requirements.qrcode import send_qr
 
@@ -14,7 +14,6 @@ requirements = Blueprint('requirements',__name__)
 def require():
     form = Requirement()
     if form.validate_on_submit():
-        
         name = form.name.data.lower()
         location = form.location.data.lower()
         district = form.district.data.lower()
@@ -44,4 +43,7 @@ def require():
 @requirements.route('/reqlist')
 def reqlist():
     reqs = requirement.query.order_by(requirement.cur_time.desc())
-    return render_template('requests_list.html',requests=reqs)
+    requests = [] 
+    for reqs in reqs:
+        requests.append({'name':reqs.name,'location':reqs.location,'district':reqs.district,'state':reqs.state,'code':reqs.code,'email':reqs.email,'document_image':reqs.document_image,'req':reqs.req,'contact':reqs.contact})
+    return jsonify({'requests' : requests})
