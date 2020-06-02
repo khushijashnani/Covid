@@ -1,8 +1,8 @@
-"""first
+"""1
 
-Revision ID: fe115b1ca5c8
+Revision ID: 19cc8d7e5a1d
 Revises: 
-Create Date: 2020-05-02 02:57:07.092399
+Create Date: 2020-06-02 01:23:06.985589
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'fe115b1ca5c8'
+revision = '19cc8d7e5a1d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,6 +21,8 @@ def upgrade():
     op.create_table('ngo',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=False),
+    sa.Column('email', sa.String(length=30), nullable=False),
+    sa.Column('contact', sa.String(length=10), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('requirement',
@@ -31,12 +33,14 @@ def upgrade():
     sa.Column('state', sa.String(length=100), nullable=False),
     sa.Column('email', sa.String(length=30), nullable=False),
     sa.Column('req', sa.Integer(), nullable=False),
-    sa.Column('document_image', sa.String(length=64), nullable=False),
+    sa.Column('document_image', sa.String(length=64), nullable=True),
     sa.Column('contact', sa.String(length=10), nullable=False),
     sa.Column('status', sa.String(), nullable=True),
     sa.Column('cur_time', sa.DateTime(), nullable=True),
+    sa.Column('accept_time', sa.DateTime(), nullable=True),
+    sa.Column('complete_time', sa.DateTime(), nullable=True),
     sa.Column('ngo_id', sa.Integer(), nullable=True),
-    sa.Column('code', sa.String(), nullable=False),
+    sa.Column('code', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['ngo_id'], ['ngo.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

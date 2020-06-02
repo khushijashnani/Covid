@@ -7,5 +7,4 @@ def send_qr(data,email):
     fi = data +'.png'
     print(fi)
     a.png('covid\\requirements\\qrcodes\\'+fi,scale=7)
-    print(fi)
     return fi
