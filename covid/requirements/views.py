@@ -37,11 +37,6 @@ def require():
 
     return "Done"
 
-    #     print(req.name)
-    #     flash('Requirement submitted successfully!')
-    #     return redirect(url_for('requirements.reqlist'))
-    # return render_template('requests.html',form=form)
-
 @requirements.route('/reqlist')
 def reqlist():
     reqs = requirement.query.order_by(requirement.cur_time.desc())
@@ -91,4 +86,3 @@ def accept(req_id):
     #mail.send([msg1,msg2])
 
     return "Done"
-
