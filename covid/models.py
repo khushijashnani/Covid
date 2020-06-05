@@ -7,7 +7,7 @@ class requirement(db.Model):
     location = db.Column(db.String(200),nullable=False)
     district = db.Column(db.String(100),nullable=False)
     state = db.Column(db.String(100),nullable=False)
-    email = db.Column(db.String(30),unique=True,nullable=False)
+    email = db.Column(db.String(30),nullable=False)
     req = db.Column(db.Integer,nullable=False)
     document_image = db.Column(db.String(64))
     contact = db.Column(db.String(10),nullable=False)    
@@ -32,7 +32,7 @@ class ngo(db.Model):
     __tablename__='ngo'
     id = db.Column(db.Integer,primary_key=True)
     name = db.Column(db.String(100),nullable=False)
-    email = db.Column(db.String(30),nullable=False,unique=True)
+    email = db.Column(db.String(30),nullable=False)
     contact = db.Column(db.String(10),nullable=False) 
     reqs = db.relationship('requirement',backref='reqs')
     def __init__(self,name=name,email=email,contact=contact):
