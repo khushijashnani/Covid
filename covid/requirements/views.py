@@ -66,14 +66,14 @@ def accept():
 
     if vol is not None :
         vol.reqs.append(req)
-        db.session.commit()
+        # db.session.commit()
         req.ngo_id = vol.id
         msg1 = Message(subject='Request Confirmed',body='You have accepted the request.\nRequest ID:'+str(req.id)+'\nPlease contact them and do the needful as early as possible.\nThank You.',recipients=[vol.email])
         msg2 = Message(subject='Request accepted',body='Your request has been accpeted by '+vol.name+'\n.They will contact you soon.',recipients=[req.email])
     else:
         volunteer = ngo(name=data['ngo_name'],contact=data['ngo_contact'],email=data['ngo_email'])
         db.session.add(volunteer)
-        db.session.commit()
+        # db.session.commit()
         req.ngo_id = volunteer.id
         print(volunteer)
         msg1 = Message(subject='Request Confirmed',body='You have accepted the request.\nRequest ID:'+str(req.id)+'\nPlease contact them and do the needful as early as possible.\nThank You.',recipients=[volunteer.email])
@@ -81,6 +81,10 @@ def accept():
 
     req.accept_time = datetime.now()
     req.status="orderAccepted"
+    
+    mail.send(msg1)
+    mail.send(msg2)
+
     db.session.commit()
 
     #for debugging purpose.
@@ -88,9 +92,6 @@ def accept():
     print(requ)
     print(vol)
 
-    mail.send(msg1)
-    mail.send(msg2)
-    
     return "Done"
 
 @requirements.route('/validate',methods=['GET','POST'])
